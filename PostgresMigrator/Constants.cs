@@ -9,7 +9,7 @@ namespace PostgresMigrator
 
         public class Tables
         {
-            public static string NOTE = "note";
+            public static string NOTE = "note"; 
         }
     }
 }
