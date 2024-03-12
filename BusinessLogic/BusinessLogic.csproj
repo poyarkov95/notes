@@ -4,4 +4,17 @@
         <TargetFramework>net48</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Common" />
+      <Folder Include="Filter" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="10.1.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Postgres\Postgres.csproj" />
+    </ItemGroup>
+
 </Project>

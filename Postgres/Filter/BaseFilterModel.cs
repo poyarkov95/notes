@@ -1,4 +1,4 @@
-namespace BusinessLogic.Filter
+namespace Postgres.Filter
 {
     public class BaseFilterModel
     {

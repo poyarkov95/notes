@@ -11,7 +11,7 @@ namespace PostgresMigrator.Migrations
 
             Create.Table(Constants.Tables.NOTE)
                 .InSchema(Constants.Schemas.PORTAL)
-                .WithColumn("id").AsGuid().NotNullable().PrimaryKey()
+                .WithColumn("id").AsGuid().NotNullable().PrimaryKey().WithDefault(SystemMethods.NewGuid)
                 .WithColumn("user_id").AsGuid().NotNullable()
                 .WithColumn("title").AsString(255).Nullable()
                 .WithColumn("details").AsString().Nullable()

@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BusinessLogic.Filter;
 using Dapper;
 using Postgres.Attributes;
+using Postgres.Filter;
 
 namespace Postgres.Repository.Implementation
 {
@@ -40,16 +40,22 @@ namespace Postgres.Repository.Implementation
 
             foreach (var property in props)
             {
-                if (property.GetCustomAttributes(true).FirstOrDefault(s => s.Equals(typeof(ColumnName))) is ColumnName columnName)
+                foreach (var attribute in property.GetCustomAttributes(true))
                 {
-                    columnNames.Add(columnName.Name);
+                    var columnNameAttribute = attribute as ColumnName;
+                    if (columnNameAttribute != null)
+                    {
+                        columnNames.Add(columnNameAttribute.Name);
+                    }
                 }
             }
 
-            return $@"select
+            var query = $@"select
                       {string.Join(" , ", columnNames)}
                       from {tableName} 
                       {PrepareSkip(filter)}";
+
+            return query;
         }
     }
 }

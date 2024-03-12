@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BusinessLogic.Filter;
 using Postgres.Entity;
+using Postgres.Filter;
 
 namespace Postgres.Repository.Interface
 {

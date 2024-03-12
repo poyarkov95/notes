@@ -1,6 +1,8 @@
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using Npgsql;
 
 namespace Postgres.Repository.Implementation
 {
@@ -16,6 +18,6 @@ namespace Postgres.Repository.Implementation
         }
 
         public IDbConnection CreateConnection()
-            => new SqlConnection(_connectionString);
+            => new NpgsqlConnection(_connectionString);
     }
 }
