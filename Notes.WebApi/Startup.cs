@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+using Notes.WebApi.Middleware;
 using Postgres.Repository.Implementation;
 using Postgres.Repository.Interface;
 
@@ -78,7 +79,8 @@ namespace Notes.WebApi
                 config.RoutePrefix = string.Empty;
                 config.SwaggerEndpoint("swagger/v1/swagger.json", "Notes API");
             });
-            
+
+            app.UseCustomExceptionHandler();
             app.UseRouting();
             app.UseHttpsRedirection();
             app.UseCors("AllowAll");
