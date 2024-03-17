@@ -1,9 +1,12 @@
 using System;
 using System.IO;
 using AutoMapper;
+using BusinessLogic.Model;
 using BusinessLogic.Model.Profile;
 using BusinessLogic.Service.Implementation;
 using BusinessLogic.Service.Interface;
+using BusinessLogic.Validator;
+using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -32,6 +35,9 @@ namespace Notes.WebApi
             services.AddSingleton<DapperContext>();
             services.AddScoped<INoteRepository, NoteRepository>();
             services.AddScoped<INoteService, NoteService>();
+            
+            //validation
+            services.AddScoped<IValidator<NoteModel>, NoteValidator>();
 
             services.AddSingleton(
                 provider => new MapperConfiguration(cfg =>

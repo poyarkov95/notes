@@ -6,7 +6,7 @@ namespace BusinessLogic.Model.Profile
     {
         public NotesModelProfile()
         {
-            CreateMap<Note, NoteModel>();
+            CreateMap<Note, NoteModel>().ReverseMap();
         }
     }
 }

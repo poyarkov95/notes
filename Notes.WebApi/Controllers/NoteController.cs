@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BusinessLogic.Model;
@@ -22,6 +22,12 @@ namespace Notes.WebApi.Controllers
         public async Task<IEnumerable<NoteModel>> GetAll(NotesFilterModel filter)
         {
             return await _service.GetNotes(filter);
+        }
+
+        [HttpPost("create")]
+        public async Task<Guid> CreateNote(NoteModel note)
+        {
+            return await _service.CreateNote(note);
         }
     }
 }

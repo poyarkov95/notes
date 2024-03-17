@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Postgres.Entity;
@@ -17,6 +18,11 @@ namespace Postgres.Repository.Implementation
         public async Task<IEnumerable<Note>> GetNotes(NotesFilterModel filterModel)
         {
             return await ExecuteSelect<Note>(TableName, filterModel);
+        }
+
+        public async Task<Guid> CreateNote(Note note)
+        {
+            return await ExecuteInsert<Note, Guid>(TableName, note);
         }
     }
 }
