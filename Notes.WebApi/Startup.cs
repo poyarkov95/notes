@@ -16,6 +16,7 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using Notes.WebApi.Middleware;
+using Postgres.Entity;
 using Postgres.Repository.Implementation;
 using Postgres.Repository.Interface;
 
@@ -35,14 +36,20 @@ namespace Notes.WebApi
             
             services.AddSingleton<DapperContext>();
             services.AddScoped<INoteRepository, NoteRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<INoteService, NoteService>();
+            services.AddScoped<IUserService, UserService>();
             
             //validation
             services.AddScoped<IValidator<NoteModel>, NoteValidator>();
+            services.AddScoped<IValidator<UserRegisterModel>, UserRegisterValidator>();
 
             services.AddSingleton(
                 provider => new MapperConfiguration(cfg =>
-                        cfg.AddProfile(new NotesModelProfile()))
+                    {
+                        cfg.AddProfile(new NotesModelProfile());
+                        cfg.AddProfile(new UserModelProfile());
+                    })
                     .CreateMapper());
 
             services.AddControllers()

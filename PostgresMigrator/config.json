@@ -1,5 +1,5 @@
 {
   "ConnectionStrings": {
-    "notes": "Host=127.0.01;Port=5432;Database=postgres;Username=postgres;Password=postgress;"
+    "notes": "Host=127.0.0.1;Port=5431;Database=postgres;Username=postgres;Password=postgress;"
   }
 }
