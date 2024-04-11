@@ -9,7 +9,13 @@ namespace BusinessLogic.Service.Interface
         /// Метод регистрации пользователя
         /// </summary>
         /// <param name="user"></param>
-        /// <returns>token</returns>
         Task Register(UserRegisterModel user);
+
+        /// <summary>
+        /// Аутентификация пользователя
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns>token</returns>
+        Task<TokenPair> Login(UserRegisterModel user);
     }
 }

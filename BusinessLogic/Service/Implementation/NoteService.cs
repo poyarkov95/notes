@@ -25,7 +25,7 @@ namespace BusinessLogic.Service.Implementation
             _mapper = mapper;
             _validator = validator;
         }
-
+        
         public async Task<IEnumerable<NoteModel>> GetNotes(NotesFilterModel filter)
         {
             var queryResult = await _noteRepository.GetNotes(filter);

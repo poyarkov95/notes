@@ -20,5 +20,11 @@ namespace Notes.WebApi.Controllers
         {
             await _userService.Register(filter);
         }
+        
+        [HttpPost("login")]
+        public async Task<TokenPair> Login(UserRegisterModel filter)
+        {
+            return await _userService.Login(filter);
+        }
     }
 }

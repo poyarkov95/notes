@@ -3,7 +3,7 @@ using FluentMigrator;
 
 namespace PostgresMigrator.Migrations
 {
-    [Migration(202400482100, "usertable")]
+    [Migration(202404092100, "usertable")]
     public class UserMigration : Migration
     {
         public override void Up()
@@ -14,9 +14,9 @@ namespace PostgresMigrator.Migrations
                 .WithColumn("login").AsString(255).Nullable()
                 .WithColumn("salt").AsString(255)
                 .WithColumn("password_hash").AsString(255)
-                .WithColumn("token").AsString(255).Nullable()
-                .WithColumn("registration_date").AsDateTime().WithDefault(SystemMethods.CurrentUTCDateTime)
-                .WithColumn("token_expire_date").AsDateTime().Nullable();
+                .WithColumn("access_token").AsString(255).Nullable()
+                .WithColumn("refresh_token").AsString(255).Nullable()
+                .WithColumn("registration_date").AsDateTime().WithDefault(SystemMethods.CurrentUTCDateTime);
         }
 
         public override void Down()

@@ -18,13 +18,13 @@ namespace Postgres.Entity
         [ColumnName("password_hash")]
         public string PasswordHash { get; set; }
         
-        [ColumnName("token")]
-        public string Token { get; set; }
+        [ColumnName("access_token")]
+        public string AccessToken { get; set; }
+        
+        [ColumnName("refresh_token")]
+        public string RefreshToken { get; set; }
         
         [ColumnName("registration_date")]
         public DateTime RegistrationDate { get; set; }
-        
-        [ColumnName("token_expire_date")]
-        public DateTime? TokenExpireDate { get; set; }
     }
 }

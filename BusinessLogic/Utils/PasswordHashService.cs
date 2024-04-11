@@ -1,3 +1,4 @@
+using System.Security.Authentication;
 using System.Text;
 
 namespace BusinessLogic.Utils
@@ -16,6 +17,12 @@ namespace BusinessLogic.Utils
             }
                 
             return hash.ToString();
+        }
+
+        public static bool Verify(string salt, string password, string passwordHash)
+        {
+            var newHash = GeneratePasswordHash(salt, password);
+            return passwordHash == newHash;
         }
     }
 }

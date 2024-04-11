@@ -28,7 +28,6 @@ namespace Notes.WebApi
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            var currentPath = Directory.GetCurrentDirectory();
             var configurationBuilder = new ConfigurationBuilder();
             configurationBuilder.AddJsonFile("appsettings.json");
             var configuration = configurationBuilder.Build();
@@ -39,6 +38,8 @@ namespace Notes.WebApi
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<INoteService, NoteService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICustomAuthenticationService, CustomAuthenticationService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             
             //validation
             services.AddScoped<IValidator<NoteModel>, NoteValidator>();
@@ -68,6 +69,9 @@ namespace Notes.WebApi
                     policy.AllowAnyOrigin();
                 });
             });
+            
+            services.AddAuthentication("BasicSchema")
+                .AddBasicAuthentication("BasicSchema", "BasicSchema", o => { });
 
             services.AddSwaggerGen();
         }
@@ -91,6 +95,9 @@ namespace Notes.WebApi
             app.UseRouting();
             app.UseHttpsRedirection();
             app.UseCors("AllowAll");
+            
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

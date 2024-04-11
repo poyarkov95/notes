@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BusinessLogic.Model;
 using BusinessLogic.Service.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Postgres.Filter;
 
@@ -18,6 +19,7 @@ namespace Notes.WebApi.Controllers
             _service = service;
         }
 
+        [Authorize]
         [HttpPost("list")]
         public async Task<IEnumerable<NoteModel>> GetAll(NotesFilterModel filter)
         {
